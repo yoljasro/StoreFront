@@ -1,3 +1,4 @@
+// ProductCard.tsx
 "use client";
 
 import Image from "next/image";
@@ -9,11 +10,11 @@ interface ProductCardProps {
   updateSignedInUser?: (updatedUser: UserType) => void;
 }
 
-const ProductCard = ({ product, updateSignedInUser }: ProductCardProps ) => {
+const ProductCard = ({ product, updateSignedInUser }: ProductCardProps) => {
   return (
     <Link
       href={`/products/${product._id}`}
-      className="w-[220px] flex flex-col gap-2"
+      className="w-[220px] flex flex-col gap-2 hover:scale-105 transform transition-transform duration-300 animate-fadeIn"
     >
       <Image
         src={product.media[0]}
@@ -22,7 +23,7 @@ const ProductCard = ({ product, updateSignedInUser }: ProductCardProps ) => {
         height={300}
         className="h-[250px] rounded-lg object-cover"
       />
-      <div>
+      <div className="flex flex-col gap-1">
         <p className="text-base-bold">{product.title}</p>
         <p className="text-small-medium text-grey-2">{product.category}</p>
       </div>

@@ -1,9 +1,9 @@
+// ProductInfo.tsx
 "use client";
 
 import { useState } from "react";
 import HeartFavorite from "./HeartFavorite";
 import { MinusCircle, PlusCircle } from "lucide-react";
-
 import useCart from "@/lib/hooks/useCart";
 
 const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
@@ -18,7 +18,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
   const cart = useCart();
 
   return (
-    <div className="max-w-[400px] flex flex-col gap-4">
+    <div className="max-w-[400px] flex flex-col gap-4 animate-fadeIn">
       <div className="flex justify-between items-center">
         <p className="text-heading3-bold">{productInfo.title}</p>
         <HeartFavorite product={productInfo} />
@@ -43,8 +43,10 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
             {productInfo.colors.map((color, index) => (
               <p
                 key={index}
-                className={`border border-black px-2 py-1 rounded-lg cursor-pointer ${
-                  selectedColor === color && "bg-black text-white"
+                className={`border border-black px-2 py-1 rounded-lg cursor-pointer transition-all duration-300 ${
+                  selectedColor === color
+                    ? "bg-black text-white"
+                    : "hover:bg-grey-2 hover:text-black"
                 }`}
                 onClick={() => setSelectedColor(color)}
               >
@@ -62,8 +64,10 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
             {productInfo.sizes.map((size, index) => (
               <p
                 key={index}
-                className={`border border-black px-2 py-1 rounded-lg cursor-pointer ${
-                  selectedSize === size && "bg-black text-white"
+                className={`border border-black px-2 py-1 rounded-lg cursor-pointer transition-all duration-300 ${
+                  selectedSize === size
+                    ? "bg-black text-white"
+                    : "hover:bg-grey-2 hover:text-black"
                 }`}
                 onClick={() => setSelectedSize(size)}
               >
@@ -90,7 +94,7 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
       </div>
 
       <button
-        className="outline text-base-bold py-3 rounded-lg hover:bg-black hover:text-white"
+        className="outline text-base-bold py-3 rounded-lg hover:bg-black hover:text-white transition-all duration-300"
         onClick={() => {
           cart.addItem({
             item: productInfo,
