@@ -31,9 +31,12 @@ const Cart = () => {
       } else {
         const res = await fetch('https://web-app-admin.vercel.app/api/checkout', {
           method: "POST",
-          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({ cartItems: cart.cartItems, customer }),
         });
+        
         const data = await res.json();
         window.location.href = data.url;
         console.log(data);
